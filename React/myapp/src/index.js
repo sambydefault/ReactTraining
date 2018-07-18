@@ -12,16 +12,30 @@ import {Supplier} from "./supplier";
 import {BrowserRouter,Route, Link} from "react-router-dom";
 import {createStore} from "redux";
 
-const MyReducer =(state=1,action) =>{
-
+const MyReducer =(state={a:1},action) =>{
+    if(action.type==="Add"){
+        state={...state,a:state.a+action.payload};
+    }
+    else if(action.type==="Sub"){
+        state={...state,a:state.a-action.payload};
+    }
+    return state;
 }
 
 let store = createStore(MyReducer);
+store.subscribe(()=>{
+    console.log("A",store.getState());
+});
+store.subscribe(()=>{
+    console.log("B",store.getState());
+});
 store.dispatch({type:"Add",payload:12});
+store.dispatch({type:"Add",payload:14});
+store.dispatch({type:"Sub",payload:10});
 
 
 
-class App extends Component{
+/* class App extends Component{
     render(){
         
         return (        
@@ -40,4 +54,4 @@ class App extends Component{
     }
 }
 
-ReactDOM.render(<App />,document.getElementById('root'));
+ReactDOM.render(<App />,document.getElementById('root')); */
