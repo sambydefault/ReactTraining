@@ -10,6 +10,14 @@ import {CssComponent} from "./csscomp";
 import {Customer} from "./customer";
 import {Supplier} from "./supplier";
 import {BrowserRouter,Route, Link} from "react-router-dom";
+import {createStore} from "redux";
+
+const MyReducer =(state=1,action) =>{
+
+}
+
+let store = createStore(MyReducer);
+store.dispatch({type:"Add",payload:12});
 
 
 
